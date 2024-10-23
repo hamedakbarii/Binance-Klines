@@ -1,3 +1,9 @@
+import KlineChart from "../components/KlineChart";
+
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <KlineChart />
+    </div>
+  );
 }
