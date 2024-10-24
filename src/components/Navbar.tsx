@@ -61,8 +61,14 @@ export default function Navbar() {
 
       {/* buttons */}
       <div className="text-white hidden md:flex justify-center items-center gap-4">
-        <Button variant="filled">login</Button>
-        <Button variant="filled">Register</Button>
+        <Link to={"/login"}>
+          <Button variant="filled">login</Button>
+        </Link>
+
+        <Link to={"/register"}>
+          <Button variant="filled">Register</Button>
+        </Link>
+
         <Switch
           size="md"
           color="dark.4"

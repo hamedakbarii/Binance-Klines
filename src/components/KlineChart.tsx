@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useKlineData } from "../Hooks/useKlineData";
-import { createChart } from "lightweight-charts";
+// import { createChart } from "lightweight-charts";
 
 export default function KlineChart() {
   const { data, loading, error } = useKlineData();
@@ -8,9 +8,9 @@ export default function KlineChart() {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  useEffect(() => {
-    const firstChart = createChart(document.getElementById("binance")!);
-  }, []);
+  // useEffect(() => {
+  //   const firstChart = createChart(document.getElementById("binance")!);
+  // }, []);
 
   return (
     <div>
@@ -24,7 +24,7 @@ export default function KlineChart() {
         ))}
       </ul>
 
-      <div id="binance"></div>
+      {/* <div id="binance"></div> */}
     </div>
   );
 }
