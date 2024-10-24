@@ -3,6 +3,7 @@ import { IconSun, IconMoonStars } from "@tabler/icons-react";
 import { TiThMenu } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import { useDisclosure } from "@mantine/hooks";
+import ThemeChanger from "./themChanger";
 
 export default function Navbar() {
   const theme = useMantineTheme();
@@ -25,7 +26,7 @@ export default function Navbar() {
   );
 
   return (
-    <nav className="w-full p-4 bg-black h-32 flex justify-between items-center">
+    <nav className="w-full py-2 px-4 bg-gray-300 shadow-lg dark:bg-gray-700 flex justify-between items-center">
       {/* Logo */}
       <div className="text-white text-2xl">
         <Link to={"/"}>
@@ -35,25 +36,36 @@ export default function Navbar() {
             className="w-10 h-10 rounded-full"
           />
         </Link>
-        {/* <span>Binance kliens</span> */}
       </div>
 
       {/* Menu items */}
       <div>
-        <ul className="hidden md:flex gap-4 text-white text-xl">
-          <Link to={"/markets"}>
+        <ul className="hidden md:flex gap-4 text-gray-800 dark:text-white text-xl">
+          <Link
+            to={"/markets"}
+            className="transition-all duration-300 hover:opacity-70"
+          >
             <li>Markets</li>
           </Link>
 
-          <Link to={"trade"}>
+          <Link
+            to={"trade"}
+            className="transition-all duration-300 hover:opacity-70"
+          >
             <li>Trade</li>
           </Link>
 
-          <Link to={"derivatives"}>
+          <Link
+            to={"derivatives"}
+            className="transition-all duration-300 hover:opacity-70"
+          >
             <li>Derivatives</li>
           </Link>
 
-          <Link to={"more"}>
+          <Link
+            to={"more"}
+            className="transition-all duration-300 hover:opacity-70"
+          >
             <li>More</li>
           </Link>
         </ul>
@@ -62,19 +74,31 @@ export default function Navbar() {
       {/* buttons */}
       <div className="text-white hidden md:flex justify-center items-center gap-4">
         <Link to={"/login"}>
-          <Button variant="filled">login</Button>
+          <Button
+            variant="filled"
+            className="!bg-white dark:!bg-black !text-gray-800 dark:!text-white"
+          >
+            login
+          </Button>
         </Link>
 
         <Link to={"/register"}>
-          <Button variant="filled">Register</Button>
+          <Button
+            variant="filled"
+            className="!bg-white dark:!bg-black !text-gray-800 dark:!text-white"
+          >
+            Register
+          </Button>
         </Link>
 
-        <Switch
+        {/* <Switch
           size="md"
           color="dark.4"
           onLabel={sunIcon}
           offLabel={moonIcon}
-        />
+        /> */}
+
+        <ThemeChanger />
       </div>
 
       {/* hamburger menu */}

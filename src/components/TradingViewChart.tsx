@@ -4,6 +4,7 @@ import {
   IChartApi,
   ISeriesApi,
   CandlestickData,
+  UTCTimestamp,
 } from "lightweight-charts";
 import { useKlineData } from "../Hooks/useKlineData";
 import TimeframeSelector from "./TimeframeSelector";
@@ -17,13 +18,15 @@ const TradingViewChart: React.FC = () => {
   const { data } = useKlineData("BTCUSDT", interval);
 
   const formatData = (): CandlestickData[] => {
-    return data.map((kline) => ({
-      time: kline.openTime / 1000,
-      open: parseFloat(kline.open),
-      high: parseFloat(kline.high),
-      low: parseFloat(kline.low),
-      close: parseFloat(kline.close),
-    }));
+    return data.map((kline) => {
+      return {
+        time: (kline.openTime / 1000) as UTCTimestamp,
+        open: parseFloat(kline.open),
+        high: parseFloat(kline.high),
+        low: parseFloat(kline.low),
+        close: parseFloat(kline.close),
+      };
+    });
   };
 
   useEffect(() => {
@@ -32,7 +35,7 @@ const TradingViewChart: React.FC = () => {
         width: chartContainerRef.current.clientWidth,
         height: 400,
         layout: {
-          backgroundColor: "#ffffff",
+          background: { color: "#ffffff" },
           textColor: "#000",
         },
         grid: {
@@ -67,16 +70,19 @@ const TradingViewChart: React.FC = () => {
   }, [data]);
 
   return (
-    <div>
+    <div className="w-full flex flex-col justify-center items-center gap-10 px-10 pt-20">
       <TimeframeSelector
         selectedInterval={interval}
         onChangeInterval={setInterval}
       />
+
+      {/* Chart */}
       <div
         ref={chartContainerRef}
-        className="tradingview-chart"
+        className="tradingview-chart w-full min-h-[30rem] max-h-[50rem]"
         style={{ position: "relative" }}
       />
+
       {lastUpdated && (
         <p className="text-gray-500 mt-2">Last updated: {lastUpdated}</p>
       )}

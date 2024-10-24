@@ -17,9 +17,9 @@ const TimeframeSelector: React.FC<TimeframeSelectorProps> = ({
         <button
           key={interval}
           onClick={() => onChangeInterval(interval)}
-          className={`px-4 py-2 rounded ${
+          className={`md:px-4 px-2 py-2 rounded  ${
             selectedInterval === interval
-              ? "bg-blue-500 text-white"
+              ? "!bg-blue-500 text-white"
               : "bg-gray-200"
           }`}
         >

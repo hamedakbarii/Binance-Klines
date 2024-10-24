@@ -45,10 +45,9 @@ export const useKlineData = (
 
     fetchData();
 
-    // Set up a timer to fetch data every 60 seconds
+    // timer to fetch data every 60 seconds
     const intervalId = setInterval(fetchData, 60000);
 
-    // Cleanup on component unmount
     return () => clearInterval(intervalId);
   }, [symbol, interval]);
 
