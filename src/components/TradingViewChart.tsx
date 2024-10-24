@@ -9,7 +9,12 @@ import {
 import { useKlineData } from "../Hooks/useKlineData";
 import TimeframeSelector from "./TimeframeSelector";
 
-const TradingViewChart: React.FC = () => {
+// Add a prop for theme support
+interface TradingViewChartProps {
+  theme: "light" | "dark";
+}
+
+const TradingViewChart: React.FC<TradingViewChartProps> = ({ theme }) => {
   const [interval, setInterval] = useState<string>("1m");
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
   const chartContainerRef = useRef<HTMLDivElement>(null);
@@ -29,18 +34,37 @@ const TradingViewChart: React.FC = () => {
     });
   };
 
+  const chartOptions = {
+    light: {
+      backgroundColor: "#ffffff",
+      textColor: "#000000",
+      gridColor: "#eeeeee",
+    },
+    dark: {
+      backgroundColor: "#1f1f1f",
+      textColor: "#ffffff",
+      gridColor: "#444444",
+    },
+  };
+
   useEffect(() => {
     if (chartContainerRef.current) {
+      const { backgroundColor, textColor, gridColor } = chartOptions[theme];
+
+      if (chartRef.current) {
+        chartRef.current.remove();
+      }
+
       chartRef.current = createChart(chartContainerRef.current, {
         width: chartContainerRef.current.clientWidth,
         height: 400,
         layout: {
-          background: { color: "#ffffff" },
-          textColor: "#000",
+          background: { color: backgroundColor },
+          textColor: textColor,
         },
         grid: {
-          vertLines: { color: "#eeeeee" },
-          horzLines: { color: "#eeeeee" },
+          vertLines: { color: gridColor },
+          horzLines: { color: gridColor },
         },
       });
 
@@ -56,7 +80,7 @@ const TradingViewChart: React.FC = () => {
 
       return () => resizeObserver.disconnect();
     }
-  }, []);
+  }, [theme]); // Watch for changes in theme here
 
   useEffect(() => {
     if (candlestickSeriesRef.current && data.length > 0) {
