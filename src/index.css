@@ -1,7 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.custom-drawer {
-  background-color: #1a1a1a; /* Replace with your desired color */
-}

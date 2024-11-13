@@ -8,7 +8,7 @@ import { ThemeContext } from "../context/ThemeContextProvider";
 
 export default function Navbar() {
   const [opened, { open, close }] = useDisclosure(false);
-  const { theme } = useContext(ThemeContext) || {}; // Access theme from context
+  const { theme } = useContext(ThemeContext) || {};
 
   return (
     <nav className="w-full py-2 px-4 bg-gray-300 shadow-lg dark:bg-gray-700 flex justify-between items-center">
@@ -90,16 +90,16 @@ export default function Navbar() {
         title="Binance"
         styles={{
           content: {
-            backgroundColor: theme === "dark" ? "#333" : "#fff", // Use theme from context
+            backgroundColor: theme === "dark" ? "#333" : "#fff",
           },
           header: {
-            backgroundColor: theme === "dark" ? "#444" : "#f0f0f0", // Header background color
-            color: theme === "dark" ? "#fff" : "#000", // Text color in header
+            backgroundColor: theme === "dark" ? "#444" : "#f0f0f0",
+            color: theme === "dark" ? "#fff" : "#000",
           },
           close: {
-            color: theme === "dark" ? "#fff" : "#000", // Close button color based on theme
+            color: theme === "dark" ? "#fff" : "#000",
             "&:hover": {
-              backgroundColor: theme === "dark" ? "#555" : "#e0e0e0", // Hover background for close button
+              backgroundColor: theme === "dark" ? "#555" : "#e0e0e0",
             },
           },
         }}
